@@ -1,4 +1,5 @@
 import asyncio
+import os
 from typing import List, Optional, Tuple
 
 import streamlit as st
@@ -43,10 +44,11 @@ if st.session_state["generated"]:
             st.markdown(st.session_state["generated"][i])
 
 
+API_URL = os.getenv("CLINICAL_AGENT_URL", "http://localhost:8080/clinical-agent/")
 async def get_agent_response(
     input: str, stream_handler: StreamHandler, chat_history: Optional[List[Tuple]] = []
 ):
-    url = "http://api:8080/clinical-agent/"
+    url = API_URL
     st.session_state["generated"].append("")
     remote_runnable = RemoteRunnable(url)
     async for chunk in remote_runnable.astream_log(
