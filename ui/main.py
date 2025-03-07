@@ -44,7 +44,7 @@ if st.session_state["generated"]:
             st.markdown(st.session_state["generated"][i])
 
 
-API_URL = os.getenv("CLINICAL_AGENT_URL", "http://localhost:8080/clinical-agent/")
+API_URL = os.getenv("CLINICAL_AGENT_URL", "http://localhost:8080/healthcare-agent/")
 async def get_agent_response(
     input: str, stream_handler: StreamHandler, chat_history: Optional[List[Tuple]] = []
 ):
