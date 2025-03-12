@@ -30,7 +30,7 @@ if st.session_state.page == "home":
 # Page Chatbot
 elif st.session_state.page == "chatbot":
 
-
+    st.title("HealthCare agent")
     class StreamHandler:
         def __init__(self, container, status, initial_text=""):
             self.status = status
