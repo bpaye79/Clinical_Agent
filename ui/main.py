@@ -55,6 +55,8 @@ st.markdown(f"""
 </style>
 """, unsafe_allow_html=True)
 
+LOGO_PATH = "images/D&AMedlabs_long.jpg"
+
 def display_header():
     # """Displays header with logo and company name"""
     # # Solution 1 : Utilisation native de Streamlit
@@ -72,11 +74,18 @@ def display_header():
     st.markdown(f"""
     <div class='header-container'>
         <div class='logo-wrapper'>
-            <img src="data:image/png;base64,{get_base64_image(LOGO_PATH)}" class="company-logo">
+            <img src="data:images/png;base64,{get_base64_image(LOGO_PATH)}" class="company-logo">
             <div class='company-name'>D&A Medlabs</div>
         </div>
     </div>
     """, unsafe_allow_html=True)
+
+# Ajouter cette fonction d'aide pour encoder l'image
+def get_base64_image(image_path):
+    with open(image_path, "rb") as img_file:
+        return base64.b64encode(img_file.read()).decode('utf-8')
+
+
 
 # Vérifier si l'utilisateur est sur la page d'accueil
 if "page" not in st.session_state:
@@ -91,7 +100,7 @@ if st.session_state.page == "home":
     
 
 
-    st.image("images/D&AMedlabs_long.jpg",use_container_width=True)  # Image temporaire
+    #st.image("images/D&AMedlabs_long.jpg",use_container_width=True)  # Image temporaire
    
     st.markdown("### Cliquez ci-dessous pour commencer à discuter avec l'agent 👇")
 
