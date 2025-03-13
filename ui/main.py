@@ -15,6 +15,7 @@ logger = get_logger(__name__)
 st.set_page_config(page_title="HealthCare Agent", page_icon="🤖", layout="wide")
 
 LOGO_PATH = "images/D&AMedlabs_long.jpg"
+HEADER_IMAGE_PATH= "images/network_colored.jpg"
 
 
 # Custom CSS styles
@@ -96,14 +97,33 @@ if "page" not in st.session_state:
 
 # Page d'accueil
 if st.session_state.page == "home":
-    #st.title("Bienvenue sur l'Agent HealthCare 🤖")
-
+    
     display_header()
-    st.markdown("<h1 style='text-align: center;'>Bienvenue sur l'Agent HealthCare 🤖</h1>", unsafe_allow_html=True)
+    #st.markdown("<h1 style='text-align: center;'>Bienvenue sur l'Agent HealthCare 🤖</h1>", unsafe_allow_html=True)
+
+    with st.container():
+        st.markdown("""
+        <h1 style='text-align:center; margin-bottom:20px;'>
+        AI Medical Research Assistant
+        </h1>
+        <h3 style='text-align:center; color:#4a4a4a; margin-bottom:25px;'>
+        Transforming Biomedical Data into Clinical Insights
+        </h3>
+        """, unsafe_allow_html=True)
+        
+        # Main image
+        st.image(HEADER_IMAGE_PATH, use_container_width=True)
+        
+        # Image caption
+        st.markdown("""
+        <p class='image-caption'>
+        Advanced Neural Network Architecture
+        </p>
+        """, unsafe_allow_html=True)
     
 
 
-    #st.image("images/D&AMedlabs_long.jpg",use_container_width=True)  # Image temporaire
+   
    
     st.markdown("### Cliquez ci-dessous pour commencer à discuter avec l'agent 👇")
 
