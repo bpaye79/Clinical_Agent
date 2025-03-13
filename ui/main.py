@@ -20,7 +20,7 @@ if "page" not in st.session_state:
 # Page d'accueil
 if st.session_state.page == "home":
     st.title("Bienvenue sur l'Agent HealthCare 🤖")
-    st.image("images/D&AMedlabs_long.jpg", use_column_width=True)  # Image temporaire
+    st.image("images/D&AMedlabs_long.jpg",use_container_width=True)  # Image temporaire
     st.markdown("### Cliquez ci-dessous pour commencer à discuter avec l'agent 👇")
 
     if st.button("Démarrer le Chatbot 🚀"):
