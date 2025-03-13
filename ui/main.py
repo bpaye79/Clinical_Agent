@@ -3,6 +3,7 @@ import os
 from typing import List, Optional, Tuple
 
 import streamlit as st
+import base64
 from langserve import RemoteRunnable
 from streamlit.logger import get_logger
 
