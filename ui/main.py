@@ -24,7 +24,8 @@ if st.session_state.page == "home":
     
 
 
-    st.image("images/D&AMedlabs_long.jpg",width="300")  # Image temporaire
+    st.image("images/D&AMedlabs_long.jpg",use_container_width=True)  # Image temporaire
+   
     st.markdown("### Cliquez ci-dessous pour commencer à discuter avec l'agent 👇")
 
     if st.button("Démarrer le Chatbot 🚀"):
