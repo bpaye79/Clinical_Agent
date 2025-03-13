@@ -45,7 +45,7 @@ st.markdown("""
 <h3 style='text-align:center; color:#4a4a4a; margin-bottom:25px;'>Transforming Biomedical Data into Clinical Insights</h3>
 """, unsafe_allow_html=True)
 
-st.image(HEADER_IMAGE_PATH, use_container_width=True)
+st.image(HEADER_IMAGE_PATH,use_container_width=False, width=300)
 
 st.markdown("<p style='text-align:center; color: #666;'>Advanced Neural Network Architecture</p>", unsafe_allow_html=True)
 
