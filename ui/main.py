@@ -14,7 +14,7 @@ logger = get_logger(__name__)
 st.set_page_config(page_title="HealthCare Agent", page_icon="🤖", layout="wide")
 
 LOGO_PATH = "images/D&AMedlabs_long.jpg"
-LOGO_WIDTH = 94
+
 
 # Custom CSS styles
 st.markdown(f"""
@@ -35,7 +35,7 @@ st.markdown(f"""
     
     /* Enhanced logo styling (+10%) */
     .company-logo {{
-        width: {LOGO_WIDTH * 1.1}px;
+        width: 103px;
         border-radius: 8px;
         box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }}
