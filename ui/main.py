@@ -60,6 +60,10 @@ st.markdown(f"""
 """, unsafe_allow_html=True)
 
 
+# Ajouter cette fonction d'aide pour encoder l'image
+def get_base64_image(image_path):
+    with open(image_path, "rb") as img_file:
+        return base64.b64encode(img_file.read()).decode('utf-8')
 
 def display_header():
     # """Displays header with logo and company name"""
@@ -83,11 +87,6 @@ def display_header():
         </div>
     </div>
     """, unsafe_allow_html=True)
-
-# Ajouter cette fonction d'aide pour encoder l'image
-def get_base64_image(image_path):
-    with open(image_path, "rb") as img_file:
-        return base64.b64encode(img_file.read()).decode('utf-8')
 
 
 
