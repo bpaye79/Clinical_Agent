@@ -13,6 +13,71 @@ logger = get_logger(__name__)
 
 st.set_page_config(page_title="HealthCare Agent", page_icon="🤖", layout="wide")
 
+# Custom CSS styles
+st.markdown(f"""
+<style>
+    /* Header container styling */
+    .header-container {{
+        padding: 20px;
+        margin-bottom: 10px;
+    }}
+    
+    /* Logo container styling */
+    .logo-wrapper {{
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        align-items: flex-start;
+    }}
+    
+    /* Enhanced logo styling (+10%) */
+    .company-logo {{
+        width: {LOGO_WIDTH * 1.1}px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }}
+    
+    /* Company name styling */
+    .company-name {{
+        font-size: 24px;
+        color: #0d1b2a;
+        font-weight: 600;
+        margin-left: 5px;
+    }}
+    
+    /* Image caption styling */
+    .image-caption {{
+        text-align: center;
+        color: #666;
+        margin-top: 8px;
+        margin-bottom: 30px;
+    }}
+</style>
+""", unsafe_allow_html=True)
+
+def display_header():
+    # """Displays header with logo and company name"""
+    # # Solution 1 : Utilisation native de Streamlit
+    # col1, col2 = st.columns([1, 4])
+    # with col1:
+    #     st.image(
+    #         LOGO_PATH,
+    #         width=103,  # +10% de la taille originale
+    #         use_column_width=False
+    #     )
+    # st.markdown("<div class='company-name'>D&A Medlabs</div>", 
+    #            unsafe_allow_html=True)
+
+    # Solution alternative 2 : HTML corrigé
+    st.markdown(f"""
+    <div class='header-container'>
+        <div class='logo-wrapper'>
+            <img src="data:image/png;base64,{get_base64_image(LOGO_PATH)}" class="company-logo">
+            <div class='company-name'>D&A Medlabs</div>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+
 # Vérifier si l'utilisateur est sur la page d'accueil
 if "page" not in st.session_state:
     st.session_state.page = "home"
@@ -20,6 +85,8 @@ if "page" not in st.session_state:
 # Page d'accueil
 if st.session_state.page == "home":
     #st.title("Bienvenue sur l'Agent HealthCare 🤖")
+
+    display_header()
     st.markdown("<h1 style='text-align: center;'>Bienvenue sur l'Agent HealthCare 🤖</h1>", unsafe_allow_html=True)
     
 
