@@ -12,129 +12,55 @@ logger = get_logger(__name__)
 
 
 
+# 🌟 Configurer la page Streamlit
 st.set_page_config(page_title="HealthCare Agent", page_icon="🤖", layout="wide")
 
+# 📂 Définition des chemins des images
 LOGO_PATH = "images/D&AMedlabs_long.jpg"
-HEADER_IMAGE_PATH= "images/network_colored.jpg"
+HEADER_IMAGE_PATH = "images/network_colored.jpg"
 
-
-# Custom CSS styles
-st.markdown(f"""
-<style>
-    /* Header container styling */
-    .header-container {{
-        padding: 20px;
-        margin-bottom: 10px;
-    }}
-    
-    /* Logo container styling */
-    .logo-wrapper {{
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-        align-items: flex-start;
-    }}
-    
-    /* Enhanced logo styling (+10%) */
-    .company-logo {{
-        width: 103px;
-        border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }}
-    
-    /* Company name styling */
-    .company-name {{
-        font-size: 24px;
-        color: #0d1b2a;
-        font-weight: 600;
-        margin-left: 5px;
-    }}
-    
-    /* Image caption styling */
-    .image-caption {{
-        text-align: center;
-        color: #666;
-        margin-top: 8px;
-        margin-bottom: 30px;
-    }}
-</style>
-""", unsafe_allow_html=True)
-
-
-# Ajouter cette fonction d'aide pour encoder l'image
+# 🔄 Fonction pour encoder une image en Base64
 def get_base64_image(image_path):
     with open(image_path, "rb") as img_file:
         return base64.b64encode(img_file.read()).decode('utf-8')
 
+# 🌟 Affichage de l'en-tête
 def display_header():
-    # """Displays header with logo and company name"""
-    # # Solution 1 : Utilisation native de Streamlit
-    # col1, col2 = st.columns([1, 4])
-    # with col1:
-    #     st.image(
-    #         LOGO_PATH,
-    #         width=103,  # +10% de la taille originale
-    #         use_column_width=False
-    #     )
-    # st.markdown("<div class='company-name'>D&A Medlabs</div>", 
-    #            unsafe_allow_html=True)
-
-    # Solution alternative 2 : HTML corrigé
     st.markdown(f"""
-    <div class='header-container'>
-        <div class='logo-wrapper'>
-            <img src="data:images/png;base64,{get_base64_image(LOGO_PATH)}" class="company-logo">
-            <div class='company-name'>D&A Medlabs</div>
-        </div>
+    <div class='header-container' style="text-align: center; padding: 20px;">
+        <img src="data:image/png;base64,{get_base64_image(LOGO_PATH)}" class="company-logo" style="width: 150px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+        <div class='company-name' style="font-size: 24px; font-weight: bold; color: #0d1b2a;">D&A Medlabs</div>
     </div>
     """, unsafe_allow_html=True)
 
+# 🔄 Vérifier si l'utilisateur a déjà sélectionné le chatbot
+if "chat_started" not in st.session_state:
+    st.session_state.chat_started = False
 
-
-# Vérifier si l'utilisateur est sur la page d'accueil
-if "page" not in st.session_state:
-    st.session_state.page = "home"
-
-# Page d'accueil
-if st.session_state.page == "home":
-    
+# 🌟 Page d'accueil
+if not st.session_state.chat_started:
     display_header()
-    #st.markdown("<h1 style='text-align: center;'>Bienvenue sur l'Agent HealthCare 🤖</h1>", unsafe_allow_html=True)
 
-    with st.container():
-        st.markdown("""
-        <h1 style='text-align:center; margin-bottom:20px;'>
-        AI Medical Research Assistant
-        </h1>
-        <h3 style='text-align:center; color:#4a4a4a; margin-bottom:25px;'>
-        Transforming Biomedical Data into Clinical Insights
-        </h3>
-        """, unsafe_allow_html=True)
-        
-        # Main image
-        st.image(HEADER_IMAGE_PATH, use_container_width=True)
-        
-        # Image caption
-        st.markdown("""
-        <p class='image-caption'>
-        Advanced Neural Network Architecture
-        </p>
-        """, unsafe_allow_html=True)
-    
+    st.markdown("""
+    <h1 style='text-align:center; margin-bottom:20px;'>AI Medical Research Assistant</h1>
+    <h3 style='text-align:center; color:#4a4a4a; margin-bottom:25px;'>Transforming Biomedical Data into Clinical Insights</h3>
+    """, unsafe_allow_html=True)
 
+    st.image(HEADER_IMAGE_PATH, use_container_width=True)
 
-   
-   
-    st.markdown("### Cliquez ci-dessous pour commencer à discuter avec l'agent 👇")
+    st.markdown("<p style='text-align:center; color: #666;'>Advanced Neural Network Architecture</p>", unsafe_allow_html=True)
 
-    if st.button("Démarrer le Chatbot 🚀"):
-        st.session_state.page = "chatbot"
-        st.rerun()
+    # 🌟 Bouton centré
+    col1, col2, col3 = st.columns([1, 2, 1])
+    with col2:
+        if st.button("Démarrer le Chatbot 🚀", use_container_width=True):
+            st.session_state.chat_started = True
+            st.rerun()
 
-# Page Chatbot
-elif st.session_state.page == "chatbot":
+# 🗨️ Chatbot Interface
+else:
+    st.title("HealthCare Agent 🤖")
 
-    st.title("HealthCare agent")
     class StreamHandler:
         def __init__(self, container, status, initial_text=""):
             self.status = status
@@ -150,34 +76,29 @@ elif st.session_state.page == "chatbot":
             with status:
                 st.write(status_update)
 
-
-    # Initialize chat history
+    # 🛠️ Initialisation de l'historique du chat
     if "generated" not in st.session_state:
         st.session_state["generated"] = []
     if "user_input" not in st.session_state:
         st.session_state["user_input"] = []
 
-    # Display user message in chat message container
+    # 📖 Affichage de l'historique des messages
     if st.session_state["generated"]:
         size = len(st.session_state["generated"])
-        # Display only the last three exchanges
         for i in range(max(size - 3, 0), size):
             with st.chat_message("user"):
                 st.markdown(st.session_state["user_input"][i])
             with st.chat_message("assistant"):
                 st.markdown(st.session_state["generated"][i])
 
-
+    # 🔄 API pour le chatbot
     API_URL = os.getenv("CLINICAL_AGENT_URL", "http://localhost:8080/clinical-agent/")
-    async def get_agent_response(
-        input: str, stream_handler: StreamHandler, chat_history: Optional[List[Tuple]] = []
-    ):
+
+    async def get_agent_response(input: str, stream_handler: StreamHandler, chat_history: Optional[List[Tuple]] = []):
         url = API_URL
         st.session_state["generated"].append("")
         remote_runnable = RemoteRunnable(url)
-        async for chunk in remote_runnable.astream_log(
-            {"input": input, "chat_history": chat_history}
-        ):
+        async for chunk in remote_runnable.astream_log({"input": input, "chat_history": chat_history}):
             log_entry = chunk.ops[0]
             value = log_entry.get("value")
             if isinstance(value, dict) and isinstance(value.get("steps"), list):
@@ -187,21 +108,15 @@ elif st.session_state.page == "chatbot":
                 st.session_state["generated"][-1] += value
                 stream_handler.new_token(value)
 
-
     def generate_history():
         context = []
-        # If any history exists
         if st.session_state["generated"]:
-            # Add the last three exchanges
             size = len(st.session_state["generated"])
             for i in range(max(size - 3, 0), size):
-                context.append(
-                    (st.session_state["user_input"][i], st.session_state["generated"][i])
-                )
+                context.append((st.session_state["user_input"][i], st.session_state["generated"][i]))
         return context
 
-
-    # Accept user input
+    # 🗣️ Gestion des entrées utilisateur
     if prompt := st.chat_input("How can I help you today?"):
         with st.chat_message("user"):
             st.markdown(prompt)
@@ -210,13 +125,9 @@ elif st.session_state.page == "chatbot":
             stream_handler = StreamHandler(st.empty(), status)
 
         chat_history = generate_history()
-        # Create an event loop: this is needed to run asynchronous functions
         loop = asyncio.new_event_loop()
         asyncio.set_event_loop(loop)
-        # Run the asynchronous function within the event loop
         loop.run_until_complete(get_agent_response(prompt, stream_handler, chat_history))
-        # Close the event loop
         loop.close()
         status.update(label="Finished!", state="complete", expanded=False)
-        # Add user message to chat history
         st.session_state.user_input.append(prompt)
