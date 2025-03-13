@@ -19,8 +19,19 @@ if "page" not in st.session_state:
 
 # Page d'accueil
 if st.session_state.page == "home":
-    st.title("Bienvenue sur l'Agent HealthCare 🤖")
-    st.image("images/D&AMedlabs_long.jpg",use_container_width=True)  # Image temporaire
+    #st.title("Bienvenue sur l'Agent HealthCare 🤖")
+    st.markdown("<h1 style='text-align: center;'>Bienvenue sur l'Agent HealthCare 🤖</h1>", unsafe_allow_html=True)
+    st.markdown(
+    """
+    <div style="text-align: center;">
+        <img src="images/D&AMedlabs_long.jpg" width="300">
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
+
+
+    #st.image("images/D&AMedlabs_long.jpg",use_container_width=True)  # Image temporaire
     st.markdown("### Cliquez ci-dessous pour commencer à discuter avec l'agent 👇")
 
     if st.button("Démarrer le Chatbot 🚀"):
