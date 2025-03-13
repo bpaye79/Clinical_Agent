@@ -12,7 +12,7 @@ logger = get_logger(__name__)
 
 
 
-# 🌟 Configurer la page Streamlit
+# 🌟 Configuration de la page Streamlit
 st.set_page_config(page_title="HealthCare Agent", page_icon="🤖", layout="wide")
 
 # 📂 Définition des chemins des images
@@ -27,38 +27,38 @@ def get_base64_image(image_path):
 # 🌟 Affichage de l'en-tête
 def display_header():
     st.markdown(f"""
-    <div class='header-container' style="text-align: center; padding: 20px;">
-        <img src="data:image/png;base64,{get_base64_image(LOGO_PATH)}" class="company-logo" style="width: 150px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-        <div class='company-name' style="font-size: 24px; font-weight: bold; color: #0d1b2a;">D&A Medlabs</div>
+    <div style="text-align: center; padding: 20px;">
+        <img src="data:image/png;base64,{get_base64_image(LOGO_PATH)}" style="width: 150px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+        <div style="font-size: 24px; font-weight: bold; color: #0d1b2a;">D&A Medlabs</div>
     </div>
     """, unsafe_allow_html=True)
 
-# 🔄 Vérifier si l'utilisateur a déjà sélectionné le chatbot
+# 🌟 Gestion de l'affichage (accueil ou chatbot)
 if "chat_started" not in st.session_state:
     st.session_state.chat_started = False
 
 # 🌟 Page d'accueil
+display_header()
+
+st.markdown("""
+<h1 style='text-align:center; margin-bottom:20px;'>AI Medical Research Assistant</h1>
+<h3 style='text-align:center; color:#4a4a4a; margin-bottom:25px;'>Transforming Biomedical Data into Clinical Insights</h3>
+""", unsafe_allow_html=True)
+
+st.image(HEADER_IMAGE_PATH, use_container_width=True)
+
+st.markdown("<p style='text-align:center; color: #666;'>Advanced Neural Network Architecture</p>", unsafe_allow_html=True)
+
+# 🌟 Bouton centré pour démarrer le chatbot
 if not st.session_state.chat_started:
-    display_header()
-
-    st.markdown("""
-    <h1 style='text-align:center; margin-bottom:20px;'>AI Medical Research Assistant</h1>
-    <h3 style='text-align:center; color:#4a4a4a; margin-bottom:25px;'>Transforming Biomedical Data into Clinical Insights</h3>
-    """, unsafe_allow_html=True)
-
-    st.image(HEADER_IMAGE_PATH, use_container_width=True)
-
-    st.markdown("<p style='text-align:center; color: #666;'>Advanced Neural Network Architecture</p>", unsafe_allow_html=True)
-
-    # 🌟 Bouton centré
     col1, col2, col3 = st.columns([1, 2, 1])
     with col2:
         if st.button("Démarrer le Chatbot 🚀", use_container_width=True):
             st.session_state.chat_started = True
-            st.rerun()
+            st.rerun()  # Rafraîchissement pour afficher le chatbot
 
-# 🗨️ Chatbot Interface
-else:
+# 🌟 Chatbot Interface (s'affiche après avoir cliqué sur le bouton)
+if st.session_state.chat_started:
     st.title("HealthCare Agent 🤖")
 
     class StreamHandler:
