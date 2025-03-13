@@ -47,7 +47,7 @@ st.markdown("""
 
 col1, col2, col3 = st.columns([1, 3, 1])  # Ajuste les colonnes pour centrer l'image
 with col2:
-    st.image(HEADER_IMAGE_PATH, width=300)  # Change la largeur selon ton besoin
+    st.image(HEADER_IMAGE_PATH, width=500)  # Change la largeur selon ton besoin
 
 st.markdown("<p style='text-align:center; color: #666;'>Advanced Neural Network Architecture</p>", unsafe_allow_html=True)
 
