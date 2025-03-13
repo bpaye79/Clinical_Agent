@@ -45,7 +45,7 @@ st.markdown("""
 <h3 style='text-align:center; color:#4a4a4a; margin-bottom:25px;'>Transforming Biomedical Data into Clinical Insights</h3>
 """, unsafe_allow_html=True)
 
-col1, col2, col3 = st.columns([1, 3, 1])  # Ajuste les colonnes pour centrer l'image
+col1, col2, col3 = st.columns([1, 2, 1])  # Ajuste les colonnes pour centrer l'image
 with col2:
     st.image(HEADER_IMAGE_PATH, width=500)  # Change la largeur selon ton besoin
 
