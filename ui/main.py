@@ -13,6 +13,9 @@ logger = get_logger(__name__)
 
 st.set_page_config(page_title="HealthCare Agent", page_icon="🤖", layout="wide")
 
+LOGO_PATH = "images/D&AMedlabs_long.jpg"
+LOGO_WIDTH = 94
+
 # Custom CSS styles
 st.markdown(f"""
 <style>
@@ -55,8 +58,7 @@ st.markdown(f"""
 </style>
 """, unsafe_allow_html=True)
 
-LOGO_PATH = "images/D&AMedlabs_long.jpg"
-LOGO_WIDTH = 94
+
 
 def display_header():
     # """Displays header with logo and company name"""
