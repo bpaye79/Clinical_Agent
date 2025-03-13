@@ -56,6 +56,7 @@ st.markdown(f"""
 """, unsafe_allow_html=True)
 
 LOGO_PATH = "images/D&AMedlabs_long.jpg"
+LOGO_WIDTH = 94
 
 def display_header():
     # """Displays header with logo and company name"""
