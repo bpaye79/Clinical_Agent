@@ -45,10 +45,20 @@ st.markdown("""
 <h3 style='text-align:center; color:#4a4a4a; margin-bottom:25px;'>Transforming Biomedical Data into Clinical Insights</h3>
 """, unsafe_allow_html=True)
 
-col1, col2, col3 = st.columns([1, 2, 1])  # Ajuste les colonnes pour centrer l'image
-with col2:
-    st.image(HEADER_IMAGE_PATH, width=600)  # Change la largeur selon ton besoin
-
+st.markdown(
+    f"""
+    <style>
+        .centered-image {{
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 50%;  /* Ajuste la largeur ici (ex: 40%, 60%) */
+        }}
+    </style>
+    <img src="data:image/png;base64,{get_base64_image(HEADER_IMAGE_PATH)}" class="centered-image">
+    """,
+    unsafe_allow_html=True
+)
 st.markdown("<p style='text-align:center; color: #666;'>Advanced Neural Network Architecture</p>", unsafe_allow_html=True)
 
 # 🌟 Bouton centré pour démarrer le chatbot
